@@ -1,0 +1,10 @@
+{
+  	"name": "js-textEllipsis",
+	"description": "used to do a text-ellipsis with multiple text lines the amazing way...",
+	"main": "src/textEllipsis.js",
+	"version": "0.0.1",
+	"dependencies": {
+		"jquery": ">= 1.8.0",
+		"underscore.string": "~2.3.3"
+  	}
+}
