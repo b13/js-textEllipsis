@@ -80,6 +80,37 @@ define([
 			return _.str.ltrim(trimmedText);
 		};
 
+
+			/**
+			 * count text lines for a text in a container with a fixed with
+			 * @param text
+			 * @param containerWidth
+			 * @param font
+			 */
+		me.getLinesForText = function(text, containerWidth, font) {
+			var
+				text    = _.str.words(text)
+				, lines = 0, index = 0;
+
+				// set font for canvas
+			s.ctx.font = font;
+
+			do {
+				var textLine = text[index];
+				do {
+					index++;
+					textLine = _.str.join(" ", textLine, text[index]);
+					if (index == text.length) { break; }
+				}
+				while (s.ctx.measureText(textLine).width < containerWidth);
+				lines++;
+			}
+			while (index < text.length);
+
+			return lines;
+		};
+
+
 		return initialize();
 	};
 
