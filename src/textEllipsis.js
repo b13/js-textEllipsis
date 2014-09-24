@@ -111,6 +111,30 @@ define([
 		};
 
 
+			/**
+			 * trim text after X words
+			 *
+			 * @param text
+			 * @param count
+			 * @returns {*}
+			 */
+		me.getTextTrimmedByWordCount = function(text, count) {
+			var
+				textString = ""
+					, text = _.str.words(text);
+
+			if (text.length > count) {
+				_.each(text.slice(0,count), function(value) {
+					textString = _.str.join(" ", textString, value);
+				});
+				return _.str.trim(_.str.join(" ", textString, "..."));
+			} else {
+					// no text cropping is needed
+				return text;
+			}
+		};
+
+
 		return initialize();
 	};
 
