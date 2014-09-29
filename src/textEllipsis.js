@@ -29,10 +29,19 @@ define([
 				, ellipsis : "..."
 			};
 
+			// check if canvas is supported
+		function isCanvasSupported(){
+			var elem = document.createElement('canvas');
+			return !!(elem.getContext && elem.getContext('2d'));
+		}
+
+
 		function initialize() {
-			$('body').append('<canvas id="bJS_textEllipsisCanvas" width="300" height="150" style="display:none;"></canvas>');
-			s.$canvas = $('#bJS_textEllipsisCanvas');
-			s.ctx = s.$canvas[0].getContext("2d");
+			if (isCanvasSupported()) {
+				$('body').append('<canvas id="bJS_textEllipsisCanvas" width="300" height="150" style="display:none;"></canvas>');
+				s.$canvas = $('#bJS_textEllipsisCanvas');
+				s.ctx = s.$canvas[0].getContext("2d");
+			}
 			return me;
 		}
 
@@ -45,6 +54,7 @@ define([
 			 * @param font i.e. "12px Arial"
 			 */
 		me.getTrimmedText = function(text, linesToShow, containerWidth, font) {
+			if (!isCanvasSupported()) { return text; }
 			var
 				text    = _.str.words(text)
 				, index = 0;
@@ -88,6 +98,8 @@ define([
 			 * @param font
 			 */
 		me.getLinesForText = function(text, containerWidth, font) {
+			if (!isCanvasSupported()) { return 3; }
+
 			var
 				text    = _.str.words(text)
 				, lines = 0, index = 0;
@@ -119,6 +131,7 @@ define([
 			 * @returns {*}
 			 */
 		me.getTextTrimmedByWordCount = function(text, count) {
+			if (!isCanvasSupported()) { return text; }
 			var
 				textString = ""
 					, text = _.str.words(text);
