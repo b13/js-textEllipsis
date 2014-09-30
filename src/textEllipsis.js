@@ -133,8 +133,9 @@ define([
 		me.getTextTrimmedByWordCount = function(text, count) {
 			if (!isCanvasSupported()) { return text; }
 			var
-				textString = ""
-					, text = _.str.words(text);
+				textString    = ""
+				, text        = _.str.words(text)
+				, orginalText = text;
 
 			if (text.length > count) {
 				_.each(text.slice(0,count), function(value) {
@@ -143,7 +144,7 @@ define([
 				return _.str.trim(_.str.join(" ", textString, "..."));
 			} else {
 					// no text cropping is needed
-				return text;
+				return orginalText;
 			}
 		};
 
