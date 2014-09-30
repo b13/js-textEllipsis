@@ -134,8 +134,9 @@ define([
 			if (!isCanvasSupported()) { return text; }
 			var
 				textString   = ""
-				, text       = _.str.words(text)
-				, originText = text;
+				, originText = text
+				, text       = _.str.words(text);
+
 
 			if (text.length > count) {
 				_.each(text.slice(0,count), function(value) {
